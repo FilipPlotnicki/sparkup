@@ -11,7 +11,7 @@ $homeDir = $env:USERPROFILE
 $sparkRootDir = Join-Path -Path $homeDir -ChildPath "spark"
 $sparkCacheDir = Join-Path -Path $sparkRootDir -ChildPath ".cache"
 $sparkDir = Join-Path -Path $sparkRootDir -ChildPath "spark-$sparkVersion-bin-hadoop$hadoopVersion"
-$sparkBinDir = Join-Path -Path $sparkDir -ChildPath sparkBinDir
+$sparkBinDir = Join-Path -Path $sparkDir -ChildPath $sparkBinDir
 
 if (-not (Test-Path $sparkRootDir -PathType Container)) {
     New-Item -ItemType Directory -Path $sparkRootDir
