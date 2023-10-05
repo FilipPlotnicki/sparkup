@@ -52,7 +52,7 @@ $isUpdateNeeded = $false
 
 foreach ($path in $pathsToAdd) {
     if (-not ($pythonPath -like "*$path*")) {
-        $pythonPath += ";$path"
+        $pythonPath = "$path;" + $pythonPath
         $isUpdateNeeded = $true
     }
 }
