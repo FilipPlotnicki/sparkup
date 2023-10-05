@@ -11,7 +11,7 @@ $homeDir = $env:USERPROFILE
 $sparkRootDir = Join-Path -Path $homeDir -ChildPath "spark"
 $sparkCacheDir = Join-Path -Path $sparkRootDir -ChildPath ".cache"
 $sparkDir = Join-Path -Path $sparkRootDir -ChildPath "spark-$sparkVersion-bin-hadoop$hadoopVersion"
-$sparkBinDir = Join-Path -Path $sparkDir -ChildPath $sparkBinDir
+$sparkBinDir = Join-Path -Path $sparkDir -ChildPath "bin"
 
 if (-not (Test-Path $sparkRootDir -PathType Container)) {
     New-Item -ItemType Directory -Path $sparkRootDir
@@ -77,7 +77,8 @@ if (-not ([Environment]::GetEnvironmentVariable("HADOOP_HOME", "User"))) {
     # Download winutils.exe
     if (-not (Test-Path "$hadoopBinDir\winutils.exe" -PathType Leaf)) {
         $winutilsURL = "https://github.com/steveloughran/winutils/blob/master/hadoop-3.0.0/bin/winutils.exe"
-        Invoke-WebRequest -Uri $winutilsURL -OutFile "$hadoopBinDir\winutils.exe"
+        $winutilsLocation = Join-Path -Path $hadoopBinDir -ChildPath "winutils.exe"
+        Invoke-WebRequest -Uri $winutilsURL -OutFile $winutilsLocation
         Write-Host "winutils.exe for Hadoop 3 has been downloaded and placed in $hadoopBinDir."
     } else {
         Write-Host "winutils.exe already exists in $hadoopBinDir."
