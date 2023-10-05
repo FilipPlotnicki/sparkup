@@ -3,6 +3,7 @@
 # Versions
 $sparkVersion = "3.5.0"
 $hadoopVersion = "3"
+$py4jVerion = "0.10.9.7"
 
 # Determine user's home directory
 $homeDir = $env:USERPROFILE
@@ -43,7 +44,7 @@ if (-not (Test-Path $sparkDir -PathType Container)) {
 
 # Setup PySpark
 $pysparkPath = "$sparkDir\python\lib\pyspark.zip"
-$py4jPath = "$sparkDir\python\lib\py4j-*\py4j.zip"
+$py4jPath = "$sparkDir\python\lib\py4j-$py4jVerion-src.zip"
 
 # Add PySpark and Py4J to PYTHONPATH
 $pythonPath = [Environment]::GetEnvironmentVariable("PYTHONPATH", "User")
